@@ -7,8 +7,16 @@ If you are also interested in face verification, please contact me via the issue
 
 The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) is really very dirty, and I believe that if someone could wash it up, the accuracy would increase further. If you did so, please kindly contact me. I will pay for it.
 
+**Good News:** [@潘泳苹果皮](http://weibo.com/maxpanyong) and his colleagues have washed the CASIA-webface database manually. After washing, 27703 wrong images are deleted. The washed list can be downloaded from http://pan.baidu.com/s/1hrKpbm8 . Great thanks to them!
+
 Update
 ==========
+
+2017/04/21 The project page of my new paper, NormFace: L2 HyperSphere Embedding for Face Verification, is created on https://github.com/happynear/NormFace. Using the new loss functions to fine-tune a network, the accuracy will increase a little bit higher.
+
+2017/02/18 I trained a [center-face](https://github.com/ydwen/caffe-face) model on [MS-Celeb-1M dataset](https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/) and get 99.3% on LFW. Here is the model (http://pan.baidu.com/s/1jIJT4Rc) and the aligned LFW images (http://pan.baidu.com/s/1bp7qzJh). To run the evaluation, you need to load LFW pairs by `getPairs.m` in `aligned_lfw.zip`, extract feature by `ReadFeatureLFW.m` and get the accuracy by `lfwPCA.m`. The function `pcaApply` used in `lfwPCA.m` is from [pdollar-toolbox](https://github.com/pdollar/toolbox).
+
+**Recently I talked with Yandong Wen. He said that there were more than 1,000 identities' overlap between MS-Celeb-1M and LFW. So this accuracy, 99.3%, is not a reliable value, and the performance on other datasets may not be very good.**
 
 2015/07/05 Added a matlab face alignment wrapper (MatAlignment.cpp). Now you can do the face alignment job in matlab. A demo (VerificationDemo.m) is also privided. 
 

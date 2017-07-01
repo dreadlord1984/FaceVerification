@@ -1,16 +1,22 @@
 num = size(AllFeature1,2);
-F1 = AllFeature1';
-% F1 = (F11>0);
-% F1 = sign(F1) .* sqrt(abs(F1));
-F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
+% F1 = AllFeature1(1:512,:)';
+F1 = max(AllFeature1(1:512,:)', AllFeature1(513:1024,:)') / 20;%(1:512,:)
+% F1 = bsxfun(@minus, F1, min(F1,[],2));
+% F1 = bsxfun(@rdivide, F1, max(F1,[],2));
+% F1 = bsxfun(@minus, F1, mean(F1,1));
+% F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
 % F1 = bsxfun(@minus,F1,PCAmap.mean);
 % F1 = F1 * PCAmap.M;
-F2 = AllFeature2';
-% F2 = (F21>0);
-% F2 = sign(F1) .* sqrt(abs(F2));
-F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
+
+% F2 = AllFeature2(1:512,:)';
+F2 = max(AllFeature2(1:512,:)', AllFeature2(513:1024,:)') / 20;%(1:512,:)
+% F2 = bsxfun(@minus, F2, min(F2,[],2));
+% F2 = bsxfun(@rdivide, F2, max(F2,[],2));
+% F2 = bsxfun(@minus, F2, mean(F2,1));
+% F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
 % F2 = bsxfun(@minus,F2,PCAmap.mean);
 % F2 = F2 * PCAmap.M;
+
 % F1 = AllFeature1';
 % F2 = AllFeature2';
 thresh2 = zeros(num,1);
@@ -40,8 +46,6 @@ for i=1:10
     accuracies(i) = accuracy(1);
 end;
 mean(accuracies)
-cmd = [' -t 0 -h 0'];
-model = svmtrain(same_label,thresh2,cmd);
-[class, accuracy, deci] = svmpredict(same_label,thresh2,model);
-% mean(thresh2(same_label==1)) / 4 + mean(max(0,1 - thresh2(same_label==0))) / 4
-% sum((thresh2<0.22) == same_label) / 6000
+% cmd = [' -t 0 -h 0'];
+% model = svmtrain(same_label,thresh2,cmd);
+% [class, accuracy, deci] = svmpredict(same_label,thresh2,model);
